@@ -65,29 +65,101 @@
 
 
 
+
+    <!-- // if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    //     $first_name = $_POST["first_name"];
+    //     $last_name = $_POST["Last_Name"];
+    //     $address = $_POST["Adderss"];
+    //     $country = $_POST["Country"];
+    //     $gender = $_POST["Gender"];
+    //     $skills = $_POST["skill"];
+    //     $user_name = $_POST["User_Name"];
+    //     $password = $_POST["Password"];
+    //     $department = $_POST["Department"];
+
+
+    //     echo "<p> First Name: " . $first_name . "</p>";
+    //     echo "<p> Last Name: " . $last_name . "</p>";
+    //     echo "<p> Address: " . $address . "</p>";
+    //     echo "<p> Country: " . $country . "</p>";
+    //     echo "<p> Gender: " . $gender . "</p>";
+    //     echo "<p> Skills: " . implode(", ", $skills) . "</p>";
+    //     echo "<p> User Name: " . $user_name . "</p>";
+    //     echo "<p> Password : " . $password . "</p>";
+    //     echo "<p> Department: " . $department . "</p>";
+    // } -->
+
+
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Home</title>
+    
+        <link rel="stylesheet" href="homeStyle.css">
+    </head>
+    <body>
+    
+    
+    </body>
+    </html>
+    
+    
     <?php
-
-    if ($_SERVER["REQUEST_METHOD"] === "POST") {
-        $first_name = $_POST["first_name"];
-        $last_name = $_POST["Last_Name"];
-        $address = $_POST["Adderss"];
-        $country = $_POST["Country"];
-        $gender = $_POST["Gender"];
-        $skills = $_POST["skill"];
-        $user_name = $_POST["User_Name"];
-        $password = $_POST["Password"];
-        $department = $_POST["Department"];
-
-
-        echo "<p> First Name: " . $first_name . "</p>";
-        echo "<p> Last Name: " . $last_name . "</p>";
-        echo "<p> Address: " . $address . "</p>";
-        echo "<p> Country: " . $country . "</p>";
-        echo "<p> Gender: " . $gender . "</p>";
-        echo "<p> Skills: " . implode(", ", $skills) . "</p>";
-        echo "<p> User Name: " . $user_name . "</p>";
-        echo "<p> Password : " . $password . "</p>";
-        echo "<p> Department: " . $department . "</p>";
+    
+    
+    
+    $data = file('customers.txt');
+    
+    echo "<table class='table'>
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Username</th>
+        <th> Password </th>
+        <th> Gender </th>
+        <th>Country</th>
+        <th>Address</th>
+        <th>Skills</th>
+        <th>Department</th>
+        <th> Edit </th>
+        <th> Delete </th>
+        
+      </tr>
+    </thead>
+    
+    "
+    ;
+    
+    foreach ($data as $key => $value) {
+    
+        $line = explode(':', $value);
+    
+        echo "<tr>
+    
+            <td> $line[0] </td>
+            <td> $line[1] </td>
+            <td> $line[2] </td>
+            <td> $line[3] </td>
+            <td> $line[4] </td>
+            <td> $line[5] </td>
+            <td> $line[6] </td>
+            <td> $line[7] </td>
+            <td> $line[8] </td>
+            <td><a href='edit.php?username=$line[2]' > Edit </a></td>
+            <td> <a href='delete.php?username=$line[2]'> Delete </a> </td>
+    
+    
+        </tr>
+        
+        ";
+    
     }
+    
+    echo "</table>";
 
- ?>
+?>
+
